@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react'
 import './App.css';
 
 function App() {
+
+  useEffect(() => {
+    const makeAPICall = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/products")
+      const json = await res.json()
+
+      console.log('Products JSON', json)
+    } catch (error){
+      console.log(error)
+    }
+    }
+    makeAPICall()
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Products</h1>
     </div>
   );
 }
